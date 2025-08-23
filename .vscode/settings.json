@@ -3,6 +3,8 @@
         "iostream": "cpp",
         "unordered_set": "cpp",
         "vector": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "deque": "cpp",
+        "list": "cpp"
     }
 }
