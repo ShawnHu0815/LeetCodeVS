@@ -1,49 +1,25 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-unordered_map<int, vector<int>> cost({{2,{1}},{3,{7}},{4,{4}},{5,{5,3,2}},{6,{9,6}},{7,{8}}});
-vector<int> costVec({0,2,5,5,4,5,6,3,7,6});
-
-int main() {
-    freopen("input.txt", "r", stdin);
-    int n;
-    cin >> n;
-    int m;
-    cin >> m;
-    int temp;
-    vector<bool> available(10, false);
-    int minCost = INT_MAX;
-    int minCostIdx = -1;
-    int maxCost = INT_MIN;
-    int maxCostIdx = -1;
-    for (int i = 0; i < m; i++) {
-        cin >> temp;
-        available[temp] = true;
-        if(costVec[temp] < minCost) {
-            minCost = costVec[temp];
-            minCostIdx = temp;
-            cout << minCost << " " << minCostIdx << endl;
-        }
-        if(costVec[temp] > maxCost) {
-            maxCost = costVec[temp];
-            maxCostIdx = temp;
-            cout << maxCost << " " << maxCostIdx << endl;
-        }
-    }
-    string result = "";
-    while(n > maxCost){
-        n -= minCost;
-        result += to_string(minCostIdx);
-    }
-    if(n > 0) {
-        for(int i=0;i<cost[n].size();i++){
-            if(available[cost[n][i]]){
-                result += to_string(cost[n][i]);
-                break;
+int happyTriangle(vector<int>& length) {
+    int n = length.size();
+    int ans = 0;
+    sort(length.begin(), length.end());
+    int a,b,c;
+    for(int i = 0; i < n-2; i++) {
+        a = length[i];
+        for(int j = i+1; j < n-1; j++) {
+            b = length[j];
+            for(int k = j+1; k < n; k++) {
+                c = length[k];
+                if(a + b > c) {
+                    if( a == b && b == c) {
+                        continue;
+                    }
+                    if(pow(a, 2) + pow(b, 2) == pow(c, 2)) {
+                        continue;
+                    }
+                    ans++;
+                }
             }
-            
         }
     }
-    cout << result << endl;
-    return 0;
+    return ans;
 }
