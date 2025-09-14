@@ -5,6 +5,9 @@
         "vector": "cpp",
         "string": "cpp",
         "deque": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "set": "cpp"
     }
 }
